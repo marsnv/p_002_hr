@@ -2,7 +2,6 @@ import p_hr_def01
 import p_hr_def02
 
 def main():
-    #myfile, myfilename = open_new_file()
     myfolder = "c:\db_files\\"
     current_section=9
     while current_section !="0":
