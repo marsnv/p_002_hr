@@ -1,4 +1,5 @@
 import p_hr_def01
+import p_hr_def02
 
 def main():
     #myfile, myfilename = open_new_file()
