@@ -16,7 +16,7 @@ def main():
             current_unit = 9
             while current_unit !="0":
                 p_hr_def01.display_menu_unit()
-                current_unit = input("Введите код отдела с которым будем работать: ")
+                current_unit = input("Введите код отдела с которым будем работать : ")
                 if current_unit == "0":
                     print("Закончили...")
                 elif current_unit != "0":
