@@ -1,8 +1,9 @@
 """Основной модуль программы"""
 import p_hr_def01
-from pprint import pprint
-import sys
 #import p_hr_def02
+# from pprint import pprint
+# import sys
+
 
 def main():
     """Основная процедура программы"""
