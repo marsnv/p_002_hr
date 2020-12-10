@@ -1,5 +1,7 @@
 """Основной модуль программы"""
 import p_hr_def01
+from pprint import pprint
+import sys
 #import p_hr_def02
 
 def main():
@@ -26,5 +28,6 @@ def main():
                     p_hr_def01.work_hr_file(myfile, myfilename)
         else:
             print("*-*")
-print(locals())
+#pprint(locals())
+#pprint(sys.path)
 main()
