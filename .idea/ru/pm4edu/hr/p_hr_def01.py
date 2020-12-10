@@ -64,7 +64,7 @@ def display_menu_hr():
 
 def open_new_file():
     """Открывает файл указанный пользоваталем, возращает открытый файл и полный его полный путь"""
-    myfolder = 'c:/myfiles/'
+    myfolder = 'c:/db_files/'
     myfilename = input("Введите имя файла:")
     myfile, myfilename = open_myfile(myfolder+myfilename, 'a')
     return myfile, myfilename
