@@ -1,8 +1,10 @@
+"""Основной модуль программы"""
 import p_hr_def01
 import p_hr_def02
 
 def main():
-    myfolder = "c:\db_files\\"
+    """Основная процедура программы"""
+    myfolder = 'c:/db_files/'
     current_section=9
     while current_section !="0":
         #clear()
