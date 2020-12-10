@@ -1,6 +1,6 @@
 """Основной модуль программы"""
 import p_hr_def01
-import p_hr_def02
+#import p_hr_def02
 
 def main():
     """Основная процедура программы"""
@@ -26,4 +26,5 @@ def main():
                     p_hr_def01.work_hr_file(myfile, myfilename)
         else:
             print("*-*")
+print(locals())
 main()
