@@ -69,8 +69,23 @@ def open_new_file():
     myfile, myfilename = open_myfile(myfolder+myfilename, 'a')
     return myfile, myfilename
 
-def add_new_staff(myfile):
+def new_tab_number(myfolder):
+    if os.path.exists(myfolder+'hr_tab_numbers.txt') == False:
+        tab_number = '1'
+    else:
+        hr_tab_numbers = open(r''+myfolder+'hr_tab_numbers.txt', 'r')
+        tab_number = 1+int(hr_tab_numbers.readline())
+        hr_tab_numbers.close()
+    hr_tab_numbers = open(r''+myfolder+'hr_tab_numbers.txt', 'w')
+    hr_tab_numbers.write(str(tab_number))
+    hr_tab_numbers.write("\n")
+    hr_tab_numbers.close()
+    return tab_number
+
+def add_new_staff(myfile,myfolder):
     """Позволяет добавить нового сотрудника в выбранном отделе"""
+    myfile.write(str(new_tab_number(myfolder)))
+    myfile.write("\n")
     myfile.write(input("Введите фамилию нового сотрудника : "))
     myfile.write("\n")
     myfile.write(input("Введите имя нового сотрудника : "))
@@ -82,6 +97,7 @@ def add_new_staff(myfile):
     myfile.write(input("Введите оклад нового сотрудника : "))
     myfile.write("\n")
 
+
 def clear():
     """Очищает консоль"""
     if os.name == 'posix':
@@ -91,7 +107,7 @@ def clear():
         #os.system('cls')
         subprocess.call("cls", shell=True)
 
-def work_hr_file(myfile, myfilename):
+def work_hr_file(myfile, myfilename,myfolder):
     """Работа с Кадровой информацией выбранного отдела"""
     current_section=9
     while current_section !="0":
@@ -106,4 +122,4 @@ def work_hr_file(myfile, myfilename):
             close_myfile(myfile)
             myfile, myfilename = open_myfile(myfilename, 'a')
         elif current_section == "2":
-            add_new_staff(myfile)
+            add_new_staff(myfile,myfolder)
