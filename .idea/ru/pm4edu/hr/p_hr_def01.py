@@ -18,19 +18,27 @@ def read_myfile(myfile):
         print(line)
         line = myfile.readline()
 
-def display_menu_division():
-    """Нужно позже удалить"""
-    print("*** Дирекция: ")
-    print("1 - Финансовая: ")
-    print("2 - Коммерческая: ")
-
-def display_menu_department():
-    """Нужно позже удалить"""
-    print("*** Управление: ")
-    print("11 - Финансы, Казначейство: ")
-    print("12 - Финансы, Бухгалтерия: ")
-    print("21 - Коммерция, Продажи: ")
-    print("22 - Коммерция, Закупки: ")
+def read_hrfile(myfile):
+    print('Т№'
+          +' | '+'Ф'
+          +' | '+'И'
+          +' | '+'О'
+          +' | '+'ДР'
+          +' | '+'Оклад')
+    tab_number = str(myfile.readline())
+    while tab_number != '':
+        f_staff = myfile.readline()
+        n_staff = myfile.readline()
+        o_staff = myfile.readline()
+        bd_staff = myfile.readline()
+        lc_staff = myfile.readline()
+        print(tab_number.replace('\n','')
+              +' | '+f_staff.replace('\n','')
+              +' | '+n_staff.replace('\n','')
+              +' | '+o_staff.replace('\n','')
+              +' | '+bd_staff.replace('\n','')
+              +' | '+lc_staff.replace('\n',''))
+        tab_number = str(myfile.readline())
 
 def display_menu_unit():
     """Меню с Отделами, универсально, когда нужно выбрать Отдел"""
@@ -97,6 +105,34 @@ def add_new_staff(myfile,myfolder):
     myfile.write(input("Введите оклад нового сотрудника : "))
     myfile.write("\n")
 
+def delete_staff(myfile,myfolder,myfilename):
+    """Позволяет удулить сотрудники по табельному номеру"""
+    tab_number_deleted = str(input("Введите табельный номер удаляемого сотрудника : "))+"\n"
+    close_myfile(myfile)
+    myfile, myfilename = open_myfile(myfilename, 'r')
+    tmp_myfile = open(r''+myfilename+'.tmp','w')
+    tab_number = str(myfile.readline())
+    while tab_number != '':
+        f_staff = myfile.readline()
+        n_staff = myfile.readline()
+        o_staff = myfile.readline()
+        bd_staff = myfile.readline()
+        lc_staff = myfile.readline()
+        if tab_number != tab_number_deleted:
+            tmp_myfile.write(tab_number)
+            tmp_myfile.write(f_staff)
+            tmp_myfile.write(n_staff)
+            tmp_myfile.write(o_staff)
+            tmp_myfile.write(bd_staff)
+            tmp_myfile.write(lc_staff)
+        else:
+            print("")
+        tab_number = str(myfile.readline())
+    tmp_myfile.close()
+    close_myfile(myfile)
+    os.remove(myfilename)
+    os.rename(myfilename+'.tmp',myfilename)
+    myfile, myfilename = open_myfile(myfilename, 'a')
 
 def clear():
     """Очищает консоль"""
@@ -118,8 +154,10 @@ def work_hr_file(myfile, myfilename,myfolder):
         elif current_section == "1":
             close_myfile(myfile)
             myfile, myfilename = open_myfile(myfilename, 'r')
-            read_myfile(myfile)
+            read_hrfile(myfile)
             close_myfile(myfile)
             myfile, myfilename = open_myfile(myfilename, 'a')
         elif current_section == "2":
             add_new_staff(myfile,myfolder)
+        elif current_section == "4":
+            delete_staff(myfile,myfolder,myfilename)
